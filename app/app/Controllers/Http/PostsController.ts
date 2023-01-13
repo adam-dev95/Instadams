@@ -8,20 +8,30 @@ export default class PostsController {
       const validatedData = await request.validate(PostValidator)
       auth.user?.related('posts').create(validatedData)
     } catch (error) {
-      console.log(error.messages)
+      return 'Error while create the publication'
     }
   }
 
-  public async show({ params, auth }: HttpContextContract) {
+  public async show({ params }: HttpContextContract) {
     try {
-      const post = await Post.query()
-      .where('id', params.id)
-      .preload('user')
-      .firstOrFail()
-      console.log(auth.user?.id)
+      const post = await Post.query().where('id', params.id).preload('user').preload('comment')
       return post
     } catch (error) {
-      console.log(error)
+      return 'Error while retrieving the publication'
+    }
+  }
+
+  public async delete({ params, auth }: HttpContextContract) {
+    try {
+      const post = await Post.findOrFail(params.id)
+      if (post && post.userId === auth.user?.id) {
+        await post.delete()
+        return 'The publication was succesfully deleted'
+      } else {
+        return 'Error while deleting the publication'
+      }
+    } catch (error) {
+      return 'Error while deleting the publication'
     }
   }
 }
