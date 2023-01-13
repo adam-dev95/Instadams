@@ -7,9 +7,8 @@ export default class PostValidator {
     content: schema.string({}, [
       rules.maxLength(255)
     ]),
-    mediaUrl: schema.string(),
-    mediaType: schema.string(),
-    user_id: schema.number([rules.exists({ table: 'users', column: 'id' })]),
+    url: schema.string(),
+    type: schema.string()
   })
 
   public messages: CustomMessages = {}

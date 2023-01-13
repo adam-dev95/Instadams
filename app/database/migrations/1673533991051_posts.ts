@@ -7,8 +7,8 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.string('content').notNullable()
-      table.string('mediaUrl').notNullable()
-      table.string('mediaType').notNullable()
+      table.string('url').notNullable()
+      table.string('type').notNullable()
       table.integer('user_id').unsigned().notNullable()
       table.timestamps(true, true)
     })

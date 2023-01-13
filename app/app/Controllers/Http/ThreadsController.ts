@@ -16,7 +16,6 @@ export default class ThreadsController {
   public async store({ request, auth }: HttpContextContract) {
     const validatedData = await request.validate(ThreadValidator)
 
-    console.log(validatedData)
     const thread = await auth.user?.related('threads').create(validatedData)
 
     await thread?.load('user')

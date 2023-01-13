@@ -9,15 +9,15 @@ export default class Post extends BaseModel {
 
   @column()
   public content: string;
-  
+
   @column()
   public userId: number
 
   @column()
-  public mediaUrl: string;
+  public url: string;
 
   @column()
-  public mediaType: string;
+  public type: string;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
