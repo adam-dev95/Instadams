@@ -14,7 +14,11 @@ export default class PostsController {
 
   public async show({ params }: HttpContextContract) {
     try {
-      const post = await Post.query().where('id', params.id).preload('user').preload('comment')
+      const post = await Post.query()
+        .where('id', params.id)
+        .preload('user')
+        .preload('comment')
+        .preload('like')
       return post
     } catch (error) {
       return 'Error while retrieving the publication'

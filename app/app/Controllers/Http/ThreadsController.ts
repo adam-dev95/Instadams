@@ -50,16 +50,12 @@ export default class ThreadsController {
   }
 
   public async delete({ request, params }: HttpContextContract) {
-
     try {
       const thread = await Thread.findOrFail(params.id)
 
       const deleteThread = await Thread.query().where('id', params.id).delete()
-      
-
     } catch (error) {
-      return "error"
+      return 'error'
     }
-
   }
 }
