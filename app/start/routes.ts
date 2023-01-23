@@ -20,4 +20,9 @@ Route.group(() => {
   // Comments
   Route.post('posts/:postId/comments', 'CommentsController.store').middleware('auth')
   Route.delete('posts/:postId/comments/:commentId', 'CommentsController.delete').middleware('auth')
+
+  // Conversation
+
+  Route.get('conversations/:userId', 'ConversationsController.index').middleware('auth')
+
 }).prefix('api')
