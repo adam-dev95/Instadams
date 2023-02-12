@@ -14,12 +14,13 @@ export default class AuthController {
   }
 
   public async login({ request, auth }: HttpContextContract) {
-    const { email, password } = request.body()
+    const {email,password} = request.body()
+    //console.log("BODY : ",request.body())
     try {
       const token = await auth.attempt(email, password)
       return token
     } catch (error) {
-      return 'Probleme'
+      return "Erreur de connexion"
     }
   }
 }
