@@ -5,13 +5,6 @@ Route.group(() => {
   Route.post('auth/register', 'AuthController.register')
   Route.post('auth/login', 'AuthController.login')
 
-  // Threads
-  Route.get('threads', 'ThreadsController.index').middleware('auth')
-  Route.get('threads/:id', 'ThreadsController.show')
-  Route.post('threads', 'ThreadsController.store').middleware('auth')
-  Route.patch('threads/:id', 'ThreadsController.update').middleware('auth')
-  Route.delete('threads/:id', 'ThreadsController.delete').middleware('auth')
-
   // Publications
   Route.post('posts', 'PostsController.store').middleware('auth')
   Route.get('posts/:id', 'PostsController.show').middleware('auth')
@@ -24,5 +17,7 @@ Route.group(() => {
   // Conversation
 
   Route.get('conversations/:userId', 'ConversationsController.index').middleware('auth')
+  Route.post('conversations', 'ConversationsController.store').middleware('auth')
+
 
 }).prefix('api')

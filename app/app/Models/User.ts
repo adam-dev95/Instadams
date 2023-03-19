@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, hasMany, HasMany} from '@ioc:Adonis/Lucid/Orm'
-import Thread from './Thread'
 import Post from './Post'
 import Like from './Like'
 import Comment from './Comment'
@@ -34,9 +33,6 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
-
-  @hasMany(() => Thread)
-  public threads: HasMany<typeof Thread>
 
   @hasMany(() => Post)
   public posts: HasMany<typeof Post>
