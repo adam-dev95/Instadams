@@ -14,10 +14,12 @@ Route.group(() => {
   Route.post('posts/:postId/comments', 'CommentsController.store').middleware('auth')
   Route.delete('posts/:postId/comments/:commentId', 'CommentsController.delete').middleware('auth')
 
+  // Like
+  Route.post('posts/like', 'LikesController.store').middleware('auth')
+  Route.delete('posts/:postId/dislike', 'LikesController.delete').middleware('auth')
+
   // Conversation
 
   Route.get('conversations/:userId', 'ConversationsController.index').middleware('auth')
   Route.post('conversations', 'ConversationsController.store').middleware('auth')
-
-
 }).prefix('api')
